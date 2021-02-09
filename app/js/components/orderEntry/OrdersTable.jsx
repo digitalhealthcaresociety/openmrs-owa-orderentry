@@ -266,7 +266,32 @@ OrdersTable.propTypes = {
   }),
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = ({
+  fetchOrdersReducer: { filteredOrders, status },
+  patientReducer: { patient },
+  openmrs: { session },
+  encounterReducer: { encounterType },
+  encounterRoleReducer: { encounterRole },
+  dateFormatReducer: { dateFormat },
+  orderEntryConfigurations,
+  careSettingReducer:
+  { outpatientCareSetting, inpatientCareSetting },
+}) => ({
+  filteredOrders,
+  patient,
+  status,
+  dateFormat,
+  careSetting: outpatientCareSetting,
+  outpatientCareSetting,
+  inpatientCareSetting,
+  sessionReducer: session,
+  encounterRole,
+  encounterType,
+  allConfigurations: ((orderEntryConfigurations || {}).configurations || {}),
+  session,
+
+
+/**const mapStateToProps = state => ({
   allConfigurations: ((state.orderEntryConfigurations || {}).configurations || {}),
   careSetting: state.careSettingReducer.outpatientCareSetting,
   dateFormat: state.dateFormatReducer.dateFormat,
@@ -279,6 +304,5 @@ const mapStateToProps = state => ({
   session: state.openmrs.session,
   sessionReducer: state.openmrs.session,
   status: state.fetchOrdersReducer.status,
-});
-
-export default connect(mapStateToProps)(injectIntl(OrdersTable));
+}); **/
+export :default: connect(mapStateToProps)(injectIntl(OrdersTable)),})
