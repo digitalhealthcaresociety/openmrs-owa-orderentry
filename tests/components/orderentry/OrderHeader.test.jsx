@@ -31,7 +31,7 @@ describe('Component: OrderHeader', () => {
 describe('isEditable', () => {
 
   // TODO
-  xit('isEditable should return true for drug orders', () => {
+  it('isEditable should return true for drug orders', () => {
 
     const order = {
       orderType: {
@@ -65,7 +65,7 @@ describe('isEditable', () => {
 describe('isCancellable', () => {
 
   // TODO
-  xit('isCancellable should return true for drug orders', () => {
+  it('isCancellable should return true for drug orders', () => {
 
     const order = {
       orderType: {
