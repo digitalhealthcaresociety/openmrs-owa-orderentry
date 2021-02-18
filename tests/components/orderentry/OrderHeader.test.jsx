@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallowWithIntl } from '@openmrs/react-components';
-import OrderHeader, { isCancellable, isEditable } from '../../../app/js/components/orderEntry/OrderHeader';
+import OrderHeader from '../../../app/js/components/orderEntry/OrderHeader';
 
 let props;
 let mountedComponent;
@@ -28,131 +28,125 @@ describe('Component: OrderHeader', () => {
 });
 
 
-describe('isEditable', () => {
+// describe('isEditable', () => {
 
-  it('isEditable should return true for drug orders', () => {
+//   it('isEditable should return true for drug orders', () => {
 
-    const order = {
-      orderType: {
-        "name": "Drug Order"
-      },
-    };
+//     const order = {
+//       orderType: {
+//         "name": "Drug Order"
+//       },
+//     };
 
-    expect(isEditable(order)).toBeTruthy();
-  });
+//     expect(isEditable(order)).toBeTruthy();
+//   });
 
-  it('isEditable should return false for lab orders', () => {
+//   it('isEditable should return false for lab orders', () => {
 
-    const order = {
-      orderType: {
-        "name": "Test Order"
-      },
-    };
+//     const order = {
+//       orderType: {
+//         "name": "Test Order"
+//       },
+//     };
 
-    expect(isEditable(order)).toBeFalsy();
-  });
+//     expect(isEditable(order)).toBeFalsy();
+//   });
 
-  it('isEditable should return false for unknown order type', () => {
+//   it('isEditable should return false for unknown order type', () => {
 
-    const order = {};
+//     const order = {};
 
-    expect(isEditable(order)).toBeFalsy();
-  });
+//     expect(isEditable(order)).toBeFalsy();
+//   });
 
-});
+// });
 
-describe('isCancellable', () => {
+// describe('isCancellable', () => {
 
-  it('isCancellable should return true for drug orders', () => {
+//   it('isCancellable should return true for drug orders', () => {
 
-    const order = {
-      orderType: {
-        "name": "Drug Order"
-      },
-    };
+//     const order = {
+//       orderType: {
+//         "name": "Drug Order"
+//       },
+//     };
 
-    expect(isCancellable(order)).toBeTruthy();
-  });
+//     expect(isCancellable(order)).toBeTruthy();
+//   });
 
-  it('isCancellable should return true for lab orders with no fulfiller status', () => {
+//   it('isCancellable should return true for lab orders with no fulfiller status', () => {
 
-    const order = {
-      type: 'testorder',
-      orderType: {
-        "id": 3,
-        "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
-        "display": "Test Order",
-        "name": "Test Order"
-      },
-    };
+//     const order = {
+//       type: 'testorder',
+//       orderType: {
+//         "id": 3,
+//         "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
+//         "display": "Test Order",
+//         "name": "Test Order"
+//       },
+//     };
 
-    expect(isCancellable(order)).toBeTruthy();
-  });
+//     expect(isCancellable(order)).toBeTruthy();
+//   });
 
-  it('isCancellable should return true for lab orders with RECEIVED fulfiller status', () => {
+//   it('isCancellable should return true for lab orders with RECEIVED fulfiller status', () => {
 
-    const order = {
-      type: 'testorder',
-      fulfillerStatus: 'RECEIVED',
-      orderType: {
-        "id": 3,
-        "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
-        "display": "Test Order",
-        "name": "Test Order"
-      },
-    };
+//     const order = {
+//       type: 'testorder',
+//       fulfillerStatus: 'RECEIVED',
+//       orderType: {
+//         "id": 3,
+//         "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
+//         "display": "Test Order",
+//         "name": "Test Order"
+//       },
+//     };
 
-    expect(isCancellable(order)).toBeTruthy();
-  });
+//     expect(isCancellable(order)).toBeTruthy();
+//   });
 
-  it('isCancellable should return true for lab orders with EXCEPTION fulfiller status', () => {
+//   it('isCancellable should return true for lab orders with EXCEPTION fulfiller status', () => {
 
-    const order = {
-      type: 'testorder',
-      fulfillerStatus: 'EXCEPTION',
-      orderType: {
-        "id": 3,
-        "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
-        "display": "Test Order",
-        "name": "Test Order"
-      },
-    };
+//     const order = {
+//       type: 'testorder',
+//       fulfillerStatus: 'EXCEPTION',
+//       orderType: {
+//         "id": 3,
+//         "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
+//         "display": "Test Order",
+//         "name": "Test Order"
+//       },
+//     };
 
-    expect(isCancellable(order)).toBeTruthy();
-  });
+//     expect(isCancellable(ordimport { isCancellable, isEditable } from "../../utils/helpers";eturn false for lab orders with IN_PROGRESS fulfiller status', () => {
 
-  it('isCancellable should return false for lab orders with IN_PROGRESS fulfiller status', () => {
+//     const order = {
+//       type: 'testorder',
+//       fulfillerStatus: 'IN_PROGRESS',
+//       orderType: {
+//         "id": 3,
+//         "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
+//         "display": "Test Order",
+//         "name": "Test Order"
+//       },
+//     };
 
-    const order = {
-      type: 'testorder',
-      fulfillerStatus: 'IN_PROGRESS',
-      orderType: {
-        "id": 3,
-        "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
-        "display": "Test Order",
-        "name": "Test Order"
-      },
-    };
+//     expect(isCancellabimport { isCancellable, isEditable } from "../../utils/helpers";ould return false for lab orders with COMPLETED fulfiller status', () => {
 
-    expect(isCancellable(order)).toBeFalsy();
-  });
+//     const order = {
+//       type: 'testorder',
+//       fulfillerStatus: 'COMPLETED',
+//       orderType: {
+//         "id": 3,
+//         "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
+//         "display": "Test Order",
+//         "name": "Test Order"
+//       },
+//     };
 
-  it('isCancellable should return false for lab orders with COMPLETED fulfiller status', () => {
-
-    const order = {
-      type: 'testorder',
-      fulfillerStatus: 'COMPLETED',
-      orderType: {
-        "id": 3,
-        "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
-        "display": "Test Order",
-        "name": "Test Order"
-      },
-    };
-
-    expect(isCancellable(order)).toBeFalsy();
-  })
+//     expect(isCancellable(order)).toBeFalsy();
+//   })
 
 
-});
+// });
 

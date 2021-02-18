@@ -13,7 +13,7 @@ import { DRUG_ORDER } from './orderTypes';
 import { setSelectedOrder } from '../../actions/orderAction';
 import { discontinueOrder } from '../../actions/createOrder';
 import { getConceptShortName } from '../../utils/helpers';
-
+import { isCancellable, isEditable } from "../../utils/helpers";
 /* eslint-disable max-len */
 export class OrdersTable extends PureComponent {
   state = {
@@ -152,26 +152,23 @@ export class OrdersTable extends PureComponent {
     };
     await this.props.dispatch(discontinueOrder(payload, orderNumber));
   }
-
-  renderNoFilterResults = () => {
-    const {
-      filteredOrders,
-      status: { fetched },
-    } = this.props;
-    if (fetched && filteredOrders.length === 0) {
-      return (
-        <tr>
-          <td className="th-invisible" />
-          <td className="no-results th-invisible">
-            <h4 className="no-result-info">No Orders</h4>
-          </td>
-          <td className="th-invisible" />
-          <td className="th-invisible" />
-        </tr>
-      );
-    }
-    return null;
-  };
+ 
+  //     status: { fetched },
+  //   } = this.props;
+  //   if (fetched && filteredOrders.length === 0) {
+  //     return (
+  //       <tr>
+  //         <td className="th-invisible" />
+  //         <td className="no-results th-invisible">
+  //           <h4 className="no-result-info">No Orders</h4>
+  //         </td>
+  //         <td className="th-invisible" />
+  //         <td className="th-invisible" />
+  //       </tr>
+  //     );
+  //   }
+  //   return null;
+  // };
 
   render() {
     const { filteredOrders, dateFormat, sessionReducer } = this.props;
@@ -265,20 +262,42 @@ OrdersTable.propTypes = {
     currentLocation: PropTypes.object,
   }),
 };
-
-const mapStateToProps = state => ({
-  allConfigurations: ((state.orderEntryConfigurations || {}).configurations || {}),
-  careSetting: state.careSettingReducer.outpatientCareSetting,
-  dateFormat: state.dateFormatReducer.dateFormat,
-  encounterRole: state.encounterRoleReducer.encounterRole,
-  encounterType: state.encounterReducer.encounterType,
-  filteredOrders: state.fetchOrdersReducer.filteredOrders,
-  inpatientCareSetting: state.careSettingReducer.inpatientCareSetting,
-  outpatientCareSetting: state.careSettingReducer.outpatientCareSetting,
-  patient: state.patientReducer.patient,
-  session: state.openmrs.session,
-  sessionReducer: state.openmrs.session,
-  status: state.fetchOrdersReducer.status,
+const mapStateToProps = ({
+  fetchOrdersReducer: { filteredOrders, status },
+  patientReducer: { patient },
+  openmrs: { session },
+  encounterReducer: { encounterType },
+  encounterRoleReducer: { encounterRole },
+  dateFormatReducer: { dateFormat },
+  orderEntryConfigurations,
+  careSettingReducer:
+  { outpatientCareSetting, inpatientCareSetting },
+}) => ({
+  filteredOrders,
+  patient,
+  status,
+  dateFormat,
+  careSetting: outpatientCareSetting,
+  outpatientCareSetting,
+  inpatientCareSetting,
+  sessionReducer: session,
+  encounterRole,
+  encounterType,
+  allConfigurations: ((orderEntryConfigurations || {}).configurations || {}),
+  session,
+// const mapStateToProps = state => ({
+//   allConfigurations: ((state.orderEntryConfigurations || {}).configurations || {}),
+//   careSetting: state.careSettingReducer.outpatientCareSetting,
+//   dateFormat: state.dateFormatReducer.dateFormat,
+//   encounterRole: state.encounterRoleReducer.encounterRole,
+//   encounterType: state.encounterReducer.encounterType,
+//   filteredOrders: state.fetchOrdersReducer.filteredOrders,
+//   inpatientCareSetting: state.careSettingReducer.inpatientCareSetting,
+//   outpatientCareSetting: state.careSettingReducer.outpatientCareSetting,
+//   patient: state.patientReducer.patient,
+//   session: state.openmrs.session,
+//   sessionReducer: state.openmrs.session,
+//   status: state.fetchOrdersReducer.status,
 });
 
 export default connect(mapStateToProps)(injectIntl(OrdersTable));
