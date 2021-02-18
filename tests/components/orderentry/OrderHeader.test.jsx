@@ -32,6 +32,7 @@ describe('Component: OrderHeader', () => {
 
 //   it('isEditable should return true for drug orders', () => {
 
+
 //     const order = {
 //       orderType: {
 //         "name": "Drug Order"
@@ -59,7 +60,6 @@ describe('Component: OrderHeader', () => {
 //     expect(isEditable(order)).toBeFalsy();
 //   });
 
-// });
 
 // describe('isCancellable', () => {
 

@@ -9,13 +9,12 @@ import { isCancellable, isEditable } from "../../utils/helpers";
 // export just for testing
 export const isCancellable = (order) => {
   const orderTypeName = order && order.orderType && order.orderType.name;
-  return orderTypeName === "Drug Order" ||
-  (orderTypeName === "Test Order" &&
+  return orderTypeName === "Test Order" &&
     (!order.fulfillerStatus ||
-      !["IN_PROGRESS", "COMPLETED"].includes(order.fulfillerStatus)));
+      !["IN_PROGRESS", "COMPLETED"].includes(order.fulfillerStatus));
     }
 
-export const isEditable = order => order && order.orderType && order.orderType.name === 'Drug Order';
+export const isEditable = () => false; // not working for drugs and not supported for labs
 
 const OrderHeader = ({
   intl,
