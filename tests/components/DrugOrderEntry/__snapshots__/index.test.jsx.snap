@@ -26,6 +26,16 @@ exports[`Test for Searching and Adding an order should render component 1`] = `
     />
   </div>
 </div>
+<br />
+  <br />
+  <br />
+  <button
+    className="cancel"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Return
+  </button>
 `;
 
 exports[`Test for Searching and Adding an order should render component 2`] = `
@@ -55,6 +65,16 @@ Object {
       />
     </div>
   </div>,
+    <br />
+    <br />
+    <br />
+    <button
+      className="cancel"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Return
+    </button>
 }
 `;
 
@@ -117,4 +137,14 @@ exports[`Test for Searching and Adding an order should render component during e
     />
   </div>
 </div>
+<br />
+  <br />
+  <br />
+  <button
+    className="cancel"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Return
+  </button>
 `;

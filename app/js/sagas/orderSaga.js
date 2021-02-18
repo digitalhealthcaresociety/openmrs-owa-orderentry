@@ -8,6 +8,7 @@ import { format, addMinutes } from 'date-fns';
 import encounterRest from '../rest/encounterRest';
 import { DISCONTINUE_ORDER } from '../actions/actionTypes';
 import { discontinueOrderSucceeded } from '../actions/createOrder';
+import { getDateRange } from '../utils/helpers';
 
 
 const dateToInt = dateStr => new Date(dateStr).getTime();
